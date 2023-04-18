@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row ps-2">
+    <div class="col-md-2">
+        <div class="card p-3 mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <h5>Genres</h5>
+                    <form action="{{url_for('show_manager.genre_wise')}}" method="post"><input
+                            class="btn btn-sm btn-outline-info" type="submit" value="Apply">
+                        <ul class="d-grid g-1">
+                            {% for t in tags %}
+                            {% if t %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="tag" type="checkbox" id="{{t.lower()}}"
+                                    value="{{t.lower()}}">
+                                <label class="form-check-label" for="{{t}}">{{t|upper}}</label>
+                            </div>
+                            {%endif%}
+                            {% endfor %}
+                    </form>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h5>Venues: </h5>
+                    <ul class="d-grid g-1">
+                        {% for v in venues %}
+                        <a href="{{url_for('show_manager.venue_wise', venue_id=v.venue_id)}}">{{v.name}}</a>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10 px-3 mt-2">
+        <h5 class="text-center">
+            All venues and shows
+        </h5>
+        <div class="container">
+            <div class="row my-3 gap-2">
+                {% for s in shows %}
+                <div class="col-md-3 col-sm-2 col-12">
+                    <a href="{{url_for('show_manager.show_details', show_id = s[2])}}"
+                        style="text-decoration:none;color:inherit">
+                        <div class="card">
+                            <img src="../static/img/show_thumbnails/{{s[2]}}.jpg" class="card-img-top"
+                                alt="No thumbnail" width="80px" height="300px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{s[3]}}</h5>
+                                <p>Venue: {{s[7]}}, {{s[8]}}</p>
+                                <p>Price: {{ s[4]}}</p>
+                                <p>Rating: {{s[10]}}/5</p>
+                                {% if s[5] >= s[9] %}
+                                <p class="btn btn-secondary btn-sm">Housefull</p>
+                                {% else%}
+                                <a href="{{url_for('show_manager.show_details', show_id=s[2])}}" type="button"
+                                    class="btn btn-warning">Book</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,62 @@
+{% extends './abase.html'%}
+
+
+{% block content %}
+<div class="main container">
+    <div class="w-50 row mx-auto mt-auto h-100">
+        <div class="row text-center mt-3">
+            <h1>Create New Show</h1>
+        </div>
+        <form method="post" enctype="multipart/form-data" class="form-group">
+            <div class="form-floating mb-2">
+                <input class="form-control form-control-sm" name="title" id="title" value="{{show.title}}" required>
+                <label for="title">Show Title</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control form-control-sm" name="desc" id="desc" value="{{ show.description}}"
+                    required>
+                <label for="desc">Show description</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control form-control-sm" type="file" name="thumbnail" id="thumbnail">
+                <label for="thumbnail">Thumbnail Image</label>
+                <div id="passwordHelpBlock" class="form-text ps-1">
+                    Image must be of .jpg type.
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control form-control-sm" type="number" name="price" value="{{ show.ticket_price }}"
+                    id="price" required>
+                <label for="price">Ticket Price</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control form-control-sm" type="text" name="tags" id="tags" value=""
+                    placeholder="drama, comedy, etc">
+                <label for="tags">Tags</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control form-control-sm" type="datetime-local" id="starttime"
+                    value="{{show.start_time}}" name="starttime">
+                <label for="starttime">Choose Start Time</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control form-control-sm" type="datetime-local" id="endtime" value="{{show.end_time}}"
+                    name="endtime">
+                <label for="endtime">Choose End Time</label>
+            </div>
+
+
+
+
+
+
+
+
+
+            <input class="btn btn-outline-primary" type="submit" value="Update Show">
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

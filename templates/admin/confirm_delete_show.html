@@ -1,0 +1,19 @@
+{% extends './abase.html'%}
+
+
+{% block content %}
+
+<div class="container">
+    <h5>
+        Are you sure you want to delete the Show: <strong>{{show.title}}</strong>
+    </h5>
+
+    <a href="{{url_for('admin_crud.dashboard')}}" class="btn btn-outline-secondary" tabindex="-1" role="button"
+        aria-disabled="true">Cancel</a>
+    <form action="{{url_for('admin_crud.delete_show', show_id=show.show_id )}}" method="POST">
+        <input class="btn btn-danger" type="submit" value="Delete Show">
+
+    </form>
+</div>
+
+{% endblock content %}

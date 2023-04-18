@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row ps-2">
+
+    <div class="col-md-12 px-3 mt-2">
+        <h5 class="text-center">
+            All shows with selected genres
+        </h5>
+        <div class="container">
+            <div class="row my-3 gap-2">
+                {% for s in shows %}
+                <div class="col-md-3 col-12">
+                    <div class="card">
+                        <img src="../static/img/show_thumbnails/{{s.show_id}}.jpg" class="card-img-top"
+                            alt="No thumbnail" width="80px" height="300px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{s.title}}</h5>
+                            <p>Time: {{s.start_time[:-5]}} - {{s.start_time[-5:]}} | {{s.end_time[-5:]}}</p>
+                            <p>Price: {{ s.ticket_price}}</p>
+                            {#
+                            {% for v in venues %}
+                            {% if v.venue_id == s.venue_id %}
+                            {% if s.fill_count >= v.capacity %}
+                            <p class="btn btn-secondary btn-sm">Housefull</p>
+                            {% else%}
+                            {% endif %}
+                            {%endif%}
+                            {%endfor%}
+                            #}
+                            <a href="{{url_for('show_manager.create_booking', venue_id=s.venue_id, show_id=s.show_id)}}"
+                                type="button" class="btn btn-warning">Book</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

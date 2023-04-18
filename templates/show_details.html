@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row gap-2">
+        <div class="col-4">
+            <img src="../static/img/show_thumbnails/{{show.show_id}}.jpg" alt="Show Thumbnail">
+        </div>
+        <div class="col-6">
+            <h1>{{show.title}}</h1>
+            <p>{{show.description}}</p>
+            <div class="d-grid">
+                <p class="btn btn-sm btn-outline-info">{{ show.start_time[-5:]}}</p>
+                <p class="btn btn-sm btn-outline-info">{{show.end_time[-5:]}}</p>
+            </div>
+            <h4>City = {{venue.place}} | Theatre: {{ venue.name}} </h4>
+            {% if show.fill_count >= venue.capacity %}
+            <p class="btn btn-secondary btn-sm">Housefull</p>
+            {% else%}
+            <a href="{{url_for('show_manager.create_booking', venue_id=show.venue_id, show_id=show.show_id)}}"
+                type="button" class="btn btn-warning">Book</a>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

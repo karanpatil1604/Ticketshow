@@ -1,0 +1,40 @@
+{% extends './base.html'%}
+
+
+{% block content %}
+
+<div class="main container">
+    <div class="w-25 row mx-auto mt-auto h-100">
+        <div class="row text-center mt-3">
+            <h1>Register</h1>
+        </div>
+        <form method="post" class="form-group" autocomplete="off">
+            <div class="form-floating mb-2">
+                <input class="form-control form-control-sm" name="username" id="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control" type="password" name="password" id="password" required>
+                <label for="password">Password</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control" type="email" name="email" id="email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input class="form-control " type="tel" name="mob" id="mobile">
+                <label for="mobile">Mobile</label>
+            </div>
+
+
+            <div class="col-12">
+                <button class="btn btn-success mx-auto" type="submit">Register</button>
+            </div>
+
+        </form>
+        <p class="text-muted">Already have an account? <a style="text-decoration: none;"
+                href="{{ url_for('auth.login')}}">Log
+                In</a></p>
+    </div>
+</div>
+{% endblock content %}

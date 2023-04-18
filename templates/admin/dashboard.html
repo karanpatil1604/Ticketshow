@@ -1,0 +1,57 @@
+{% extends './abase.html'%}
+
+{% block content%}
+
+<div class="container-fluid">
+    <div class="row my-3">
+        <h3 class="col-3">All venues</h3>
+        <span class="col ml-auto"><a class="btn btn-outline-secondary" href="{{ url_for('admin_crud.create_venue')}}">+
+                New
+                Venue</a></span>
+    </div>
+    {% for v in venues %}
+    <div class="container mb-4">
+        <div class="d-grid d-md-block gap-3">
+            <h5 class="d-inline">Venue: {{v.name}}| City: {{v.place}}</h5>
+            <a class="btn btn-info btn-sm" href="{{url_for('admin_crud.update_venue', venue_id=v.venue_id)}}">Update
+                Venue</a>
+
+            <a class='btn btn-danger btn-sm' href="{{url_for('admin_crud.delete_venue', venue_id=v.venue_id)}}">Delete
+                Venue</a>
+            <a class="btn btn-outline-success btn-sm" href="/admin/{{v.venue_id}}/create_show">+Add
+                shows</a>
+        </div>
+        <hr>
+        {% if v.shows %}
+        <div class="row container-fluid shadow p-3 mb-5 bg-body rounded">
+            {% for s in v.shows %}
+            <div class="col-3">
+                <div class="card">
+                    <img src="../../static/img/show_thumbnails/{{s.show_id}}.jpg" class="card-img-top"
+                        alt="No thumbnail please add Thumbnail image"
+                        onerror="this.onerror=null; this.src='../../static/img/placeholder.jpg'" width="80px"
+                        height="250px">
+                    <div class="card-body">
+                        <h5 class="card-title">{{s.title}}</h5>
+                        <div class="d-grid d-md-block gap-2">
+                            <a class="btn btn-info btn-sm"
+                                href="{{url_for('admin_crud.update_show', show_id=s.show_id, venue_id = v.venue_id)}}">Update
+                            </a>
+                            <a class='btn btn-danger btn-sm'
+                                href="{{url_for('admin_crud.delete_show', show_id=s.show_id, venue_id=s.venue_id)}}"
+                                onclick="confirmDeleteShow()">Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock content%}

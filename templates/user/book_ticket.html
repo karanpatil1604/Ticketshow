@@ -1,0 +1,43 @@
+{% extends './base.html'%}
+
+{% block script %}
+<script rel="script" src="{{ url_for('static', filename='js/utilities.js') }}"></script>
+{% endblock script%}
+
+{% block content%}
+
+<div class="container">
+    <div class="row">
+        <h4>Booking Ticket :</h4>
+        <p>for venue {{ venue.name }}, show {{ show.title}} </p>
+    </div>
+    <div class="main container">
+        <div class="w-50 row mx-auto mt-auto h-100">
+            <div class="row text-center mt-3">
+                <p>Available seats: {{ venue.capacity - show.fill_count}}</p>
+                <form method="post" enctype="multipart/form-data" class="form-group" autocomplete="on">
+                    <div class="form-floating mb-2">
+                        <input class="form-control form-control-sm" type="text" name="number" id="number"
+                            onblur="getTotal()" required>
+                        <label for="number">Number</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input class="form-control form-control-sm" type="text" name="price" id="price"
+                            value="{{show.ticket_price}}" readonly>
+                        <label for="price">Price</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input class="form-control form-control-sm" type="text" name="total" id="total" value=0
+                            readonly>
+                        <label for="total">Total: </label>
+                    </div>
+                    <input class="btn btn-outline-success" type="submit" value="Book Tickets">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content%}

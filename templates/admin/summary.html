@@ -1,0 +1,29 @@
+{% extends 'abase.html' %}
+
+
+{% block content %}
+<div class="container-fluid ">
+    <div class="row ">
+        <h3 class="text-center">Performance Statistics for
+            Shows and Venues</h3>
+    </div>
+    <div class="row shadow p-3 mb-5 bg-body rounded">
+        <h5 class="text-center">Popularity of shows</h5>
+        <div class="container-fluid text-center">
+            <img class="border-end border-bottom" src="../../static/img/admin_src/shows_hist.png" alt="">
+        </div>
+    </div>
+    <div class="row shadow p-3 mb-5 bg-body rounded">
+        <h5 class="text-center">Popularity of Venues</h5>
+        <div class="container-fluid text-center">
+            <img class="border-end border-bottom" src="../../static/img/admin_src/venues_bar.png" alt="">
+        </div>
+    </div>
+    <div class="row shadow p-3 mb-5 bg-body rounded">
+        <h5 class="text-center">Popularity of Shows Rating wise</h5>
+        <div class="container-fluid text-center">
+            <img class="border-end border-bottom" src="../../static/img/admin_src/ratings.png" alt="">
+        </div>
+    </div>
+</div>
+{% endblock content%}

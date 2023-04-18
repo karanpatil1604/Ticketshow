@@ -1,0 +1,42 @@
+{% extends './base.html'%}
+
+{% block content%}
+
+<div class="container">
+    <div class="row mb-2">
+        <h3>Rate show </h3>
+    </div>
+    <div class="row mb-2">
+        <form class="form-check form-group"
+            action="{{url_for('show_manager.rate', user_id=user_book.user_id, show_id=user_book.show_id)}}"
+            method="post">
+            <input type="radio" name="rating" id="rating1" value="1" {% if user_book.user_rating==1 %}checked{% endif
+                %}>
+            <label class="form-check-label" for="rating1">
+                1
+            </label>
+            <input type="radio" name="rating" id="rating2" value="2" {% if user_book.user_rating==2 %}checked{% endif
+                %}>
+            <label class="form-check-label" for="rating2">
+                2
+            </label>
+            <input type="radio" name="rating" id="rating3" value="3" {% if user_book.user_rating==3 %}checked{% endif
+                %}>
+            <label class="form-check-label" for="rating3">
+                3
+            </label>
+            <input type="radio" name="rating" id="rating4" value="4" {% if user_book.user_rating==4 %}checked{% endif
+                %}>
+            <label class="form-check-label" for="rating4">
+                4
+            </label>
+            <input type="radio" name="rating" id="rating5" value="5" {% if user_book.user_rating==5 %}checked{% endif
+                %}>
+            <label class="form-check-label" for="rating5">
+                5
+            </label>
+            <input class="btn btn-sm btn-primary" type="submit" value="Rate It">
+        </form>
+    </div>
+</div>
+{% endblock content%}

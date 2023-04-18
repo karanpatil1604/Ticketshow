@@ -1,0 +1,32 @@
+{% extends './base.html'%}
+
+{% block content%}
+
+<div class="container">
+    <h1>Showing Results for {{ q }}</h1>
+    {% if results|length != 0 %}
+    {% for res in results %}
+    <div class="row text-center">
+
+        <p><a href="{{ url_for('show_manager.show_details', show_id=res.show_id)}}">{{res.title}}</a></p>
+
+    </div>
+    {% endfor %}
+    {%else%}
+    {% endif%}
+
+</div>
+
+{% if city_wise|length != 0 %}
+<div class="container">
+    {% for c in city_wise %}
+    <div class="row">
+        <p><a href="{{ url_for('show_manager.venue_wise', venue_id=c.venue_id)}}">{{ c.name }}</a></p>
+        <p>{{ c.place }}</p>
+    </div>
+    <hr>
+    {% endfor%}
+</div>
+{% endif %}
+
+{% endblock content%}
